@@ -7,6 +7,7 @@ summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_cleara
 #Deliverable 2 Suspension Coils
 suspension_table <- read.csv('Suspension_Coil.csv', check.names = F, stringsAsFactors = F)  #importing Suspension coil csv.
 head(suspension_table)
+suspension_table
 total_summary <- suspension_table %>% summarize(mean(PSI),median(PSI),sd(PSI),var(PSI))
 total_summary
 lot_summary <- suspension_table %>% group_by(Manufacturing_Lot) %>% summarize(mean(PSI),median(PSI),sd(PSI),var(PSI))
@@ -14,5 +15,10 @@ lot_summary
 
 #Deliverable 3 t-test on suspension coils
 
+#1. t.test() to determine is PSI is statistically different from mean=1500
+t.test(suspension_table$PSI,mu=1500)
+
+#2. Write three more RScripts using subset()
 t.test(subset(suspension_table, Manufacturing_Lot=='Lot1')$PSI,mu=1500) #compare sample v. population means
 t.test(subset(suspension_table, Manufacturing_Lot=='Lot2')$PSI,mu=1500)
+t.test(subset(suspension_table, Manufacturing_Lot=='Lot3')$PSI,mu=1500)
